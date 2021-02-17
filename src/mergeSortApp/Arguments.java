@@ -80,7 +80,7 @@ class Arguments {
 
             if (args[i].equals("-a") || args[i].equals("-d")) {
                 sortMode = args[i];
-                sortModeExists = !dataTypeExists;
+                sortModeExists = !sortModeExists;
             }
 
             if (args[i].equals("-s") || args[i].equals("-i")) {
