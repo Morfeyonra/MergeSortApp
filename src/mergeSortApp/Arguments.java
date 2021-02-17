@@ -1,5 +1,7 @@
 package mergeSortApp;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -78,12 +80,12 @@ class Arguments {
 
             if (args[i].equals("-a") || args[i].equals("-d")) {
                 sortMode = args[i];
-                sortModeExists = true;
+                sortModeExists = !dataTypeExists;
             }
 
             if (args[i].equals("-s") || args[i].equals("-i")) {
                 dataType = args[i];
-                dataTypeExists = true;
+                dataTypeExists = !dataTypeExists;
             }
         }
 
@@ -94,8 +96,8 @@ class Arguments {
                 return null;
             }
 
-            if (args[2].matches(".*[><:?*\"|/\\\\]+.*")) {
-                System.out.println("Incorrect outputFile name. It should not contain \"><:?*\"|/\\\" symbols");
+            if (!isFilenameValid(args[2])) {
+                System.out.println("Incorrect outputFile name.");
                 return null;
             }
 
@@ -107,8 +109,8 @@ class Arguments {
 
         } else if (dataTypeExists) {
 
-            if (args[1].matches(".*[><:?*\"|/\\\\]+.*")) {
-                System.out.println("Incorrect outputFile name. It should not contain \"><:?*\"|/\\\" symbols");
+            if (!isFilenameValid(args[1])) {
+                System.out.println("Incorrect outputFile name.");
                 return null;
             }
 
@@ -123,5 +125,15 @@ class Arguments {
         }
 
         return checkedArgs;
+    }
+
+    static boolean isFilenameValid(String file) {
+        File f = new File(file);
+        try {
+            f.getCanonicalPath();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 }

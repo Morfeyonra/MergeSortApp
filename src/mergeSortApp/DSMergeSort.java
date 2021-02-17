@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DSMergeSort implements WorkMethod {
+class DSMergeSort implements WorkMethod {
 
     @Override
     public List<String> checkFiles(Arguments cmdArgs) {
