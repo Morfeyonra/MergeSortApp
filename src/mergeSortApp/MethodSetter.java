@@ -3,7 +3,7 @@ package mergeSortApp;
 import java.io.File;
 import java.util.List;
 
-public class MethodSetter {
+class MethodSetter {
 
     private WorkMethod method;
 
